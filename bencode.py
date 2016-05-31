@@ -90,11 +90,36 @@ def decode(st):
     resp = parser.parseString(st)
     return resp[0]
 
+
+def encode(obj):
+    """Encoder for bencode format."""
+    if isinstance(obj, int):
+        # 123 => i123e
+        resp = 'i%se' % obj
+    elif isinstance(obj, (str, unicode)):
+        # 'abc' => 3:abc
+        resp = '%s:%s' % (len(obj), obj)
+    elif isinstance(obj, list):
+        # [1, 2, 3] => li1ei2ei3ee
+        resp = 'l%se' % ''.join(encode(i) for i in obj)
+    elif isinstance(obj, dict):
+        # {'key': 'value'} => d3:key5:valuee
+        resp = 'd%se' % ''.join(encode(i)
+                                for kv in obj.iteritems()
+                                for i in kv)
+    # TODO: add hadnler for the rest of the types (Exception?)
+    return resp
+
 if __name__ == '__main__':
     result = decode('20:12345678901234567890')
     result = decode('i123e')
     result = decode('l1:ai123e2:bce')
     result = decode('l1:ai123e2:bcl1:ai123e2:bcee')
     result = decode('d5:apple3:red6:banana6:yellow5:lemon6:yellow6:violet4:bluee')
-
+    obj = {'key_list': [1, '2', [3], {4: 5}],
+           'key_int': 1,
+           'key_str': 'a',
+           'key_dict': {'a': 'b'}}
+    print(encode(obj))
+    assert decode(encode(obj)) == obj
     print(result)
