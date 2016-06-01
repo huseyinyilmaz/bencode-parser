@@ -7,6 +7,7 @@ from pyparsing import StringStart
 from pyparsing import Suppress
 from pyparsing import Word
 from pyparsing import ZeroOrMore
+import six
 
 
 def to_int_action(toks):
@@ -101,7 +102,7 @@ def encode(obj):
     if isinstance(obj, int):
         # 123 => i123e
         resp = 'i%se' % obj
-    elif isinstance(obj, (str, unicode)):
+    elif isinstance(obj, six.string_types):
         # 'abc' => 3:abc
         resp = '%s:%s' % (len(obj), obj)
     elif isinstance(obj, list):
@@ -110,7 +111,7 @@ def encode(obj):
     elif isinstance(obj, dict):
         # {'key': 'value'} => d3:key5:valuee
         resp = 'd%se' % ''.join(encode(i)
-                                for kv in obj.iteritems()
+                                for kv in obj.items()
                                 for i in kv)
     else:
         raise ValueError('type "%s" is not supported: %s' % (type(obj), obj))
