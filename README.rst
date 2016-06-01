@@ -5,6 +5,7 @@ Bencode parser for python.
 
 For more information about bencode format please refer to wiki_page_
 
+
 ```
 >>> import bencode
 >>> bencode.decode('3:abc')
