@@ -1,10 +1,19 @@
-python-bencode |build|_
+bencode-parser |build|_
 ============================
 
 Bencode parser for python.
 
 For more information about bencode format please refer to wiki_page_
 
+INSTALLATION
+============
+
+::
+
+   $ pip install bencode-parser
+
+USAGE
+=====
 
 ::
 

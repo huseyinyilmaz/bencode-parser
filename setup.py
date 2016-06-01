@@ -1,15 +1,24 @@
+import os
 from setuptools import find_packages
 from setuptools import setup
 
-VERSION = 0.1
+VERSION = '1.0.0'
 
-DESCRIPTION = 'encoder library for bencode format.'
+DESCRIPTION = ('Library that encodes/decodes bencode formated strings to'
+               'python objects.')
 
+
+LONG_DESCRIPTION = os.path.join(os.path.dirname(__file__), 'README.rst')
+
+REQUIREMENTS = ['six',
+                'pyparsing>=2.1.4',
+                ]
 
 setup(
-    name='python-bencode',
+    name='bencode-parser',
     version=VERSION,
     description=DESCRIPTION,
+    long_description=LONG_DESCRIPTION,
     url='https://github.com/huseyinyilmaz/python-bencode',
     author='Huseyin Yilmaz',
     author_email='yilmazhuseyin@gmail.com',
@@ -17,8 +26,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     test_suite='tests',
-    tests_require=[
-        'six',
-        'pyparsing>=2.1.4',
-    ],
+    tests_require=REQUIREMENTS,
+    install_requires=REQUIREMENTS,
 )
