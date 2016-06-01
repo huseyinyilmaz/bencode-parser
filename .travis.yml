@@ -1,0 +1,50 @@
+sudo: false
+language: python
+# services:
+#   - elasticsearch
+#   - memcached
+#   - riak
+#   - mysql
+#   - postgresql
+#   - redis-server
+#   - cassandra
+python:
+  - "3.4"
+  - "3.3"
+  - "3.2"
+  - "2.7"
+
+
+# cache:
+#   directories:
+#     - node_modules
+#     - .pip_download_cache
+#     - "$HOME/virtualenv/python2.7.9"
+# env:
+#   matrix:
+#     - DJANGO_VERSION=1.6.0
+#     - DJANGO_VERSION=1.7.7
+#     - DJANGO_VERSION=1.8.0
+  # matrix:
+  #   -
+    # - DB=sqlite
+    # - DB=mysql
+    # - DB=postgres
+  # global:
+  #   - PIP_DOWNLOAD_CACHE=".pip_download_cache"
+# install:
+#   - time make develop dev-postgres dev-mysql
+# before_script:
+#   - mysql -e 'create database sentry;'
+#   - psql -c 'create database sentry;' -U postgres
+#   - "echo \"create keyspace sentry with replication = {'class' : 'SimpleStrategy', 'replication_factor': 1};\" | cqlsh --cqlversion=3.0.3"
+#  - echo 'create table nodestore (key text primary key, value blob, flags int);' | cqlsh -k sentry --cqlversion=3.0.3
+
+# install:
+#   - pip install Django==$DJANGO_VERSION
+#   - pip install -r dev_requirements.txt
+#   - flake8 djangonumerics
+#   - flake8 tests
+
+script:
+  - python setup.py test

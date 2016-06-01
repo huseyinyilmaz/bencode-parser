@@ -60,3 +60,14 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Sphinx documentation
+docs/_build/
+
+# emacs
+.\#*
+*~
+\#*\#
+
+# mac files
+.DS_Store
