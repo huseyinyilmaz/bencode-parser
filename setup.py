@@ -7,8 +7,10 @@ VERSION = '1.0.0'
 DESCRIPTION = ('Library that encodes/decodes bencode formated strings to'
                'python objects.')
 
-
-LONG_DESCRIPTION = os.path.join(os.path.dirname(__file__), 'README.rst')
+# read long description from the file
+path = os.path.join(os.path.dirname(__file__), 'README.rst')
+with open(path) as f:
+    LONG_DESCRIPTION = f.read()
 
 REQUIREMENTS = ['six',
                 'pyparsing>=2.1.4',
