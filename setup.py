@@ -2,7 +2,7 @@ import os
 from setuptools import find_packages
 from setuptools import setup
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 DESCRIPTION = ('Library that encodes/decodes bencode formated strings to'
                'python objects.')
@@ -25,6 +25,7 @@ setup(
     author='Huseyin Yilmaz',
     author_email='yilmazhuseyin@gmail.com',
     packages=find_packages(),
+    py_modules=['bencode'],
     include_package_data=True,
     zip_safe=False,
     test_suite='tests',
